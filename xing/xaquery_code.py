@@ -30,9 +30,9 @@ class XAQueryCode:
         count = self.query.GetBlockCount("t8430OutBlock")
         for i in range(5):
             name = self.query.GetFieldData("t8430OutBlock", "hname", i)
-            shcode = self.query.GetFieldData("t8430OutBlock", "shcode", 0)
-            expcode = self.query.GetFieldData("t8430OutBlock", "expcode", 0)
-            etfgubun = self.query.GetFieldData("t8430OutBlock", "etfgubun", 0)
+            shcode = self.query.GetFieldData("t8430OutBlock", "shcode", i)
+            expcode = self.query.GetFieldData("t8430OutBlock", "expcode", i)
+            etfgubun = self.query.GetFieldData("t8430OutBlock", "etfgubun", i)
             print(i, name, shcode, expcode, etfgubun)        
 
 if __name__ == "__main__":
