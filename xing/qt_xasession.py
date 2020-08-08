@@ -41,23 +41,30 @@ class XASession:
         return account_list
 
 
-# 메인 윈도우
-class MyWindow(QMainWindow):
+class Form(QDialog):
     def __init__(self):
         super().__init__()
-        self.btn = QPushButton("계좌 가져오기", self)
-        self.btn.move(10, 10)
-        self.btn.clicked.connect(self.get_account)
+        self.btn = QPushButton("계좌 가져오기", self)        
+        self.t_edit = QTextEdit("")
 
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(self.btn)
+        self.layout.addWidget(self.t_edit)
+
+        self.setLayout(self.layout)
+
+        self.btn.clicked.connect(self.get_account)
 
         self.session = XASession()
         self.session.login()
+
     def get_account(self):
         accounts = self.session.get_account_list()
-        print(accounts)
+        print("계좌: {}".format(accounts))
+        self.t_edit.append("계좌: {}".format(accounts))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MyWindow()
-    window.show()
+    form = Form()
+    form.show()
     app.exec_()
